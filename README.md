@@ -74,6 +74,6 @@ python3 src/cn_project_sender.py
 - GPU NLP semantic scoring
 
 ## **Author**
-**Daksh Arora – IIITD – B.Tech CSE**
+**Daksh Arora **
 
 
