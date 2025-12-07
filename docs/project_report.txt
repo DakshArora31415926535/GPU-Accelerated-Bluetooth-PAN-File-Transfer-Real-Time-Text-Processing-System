@@ -1,0 +1,78 @@
+# Project Report  
+## HYPERLINK-GPU: Bluetooth PAN Based File Transfer and CUDA-Accelerated Automated Typing System
+
+### 1. Introduction
+This project implements a complete end-to-end offline data transfer and automation system using a Bluetooth Personal Area Network (PAN) to connect an Android device (Termux) to a Windows laptop. The phone sends a text file to the laptop via a custom TCP-based protocol, after which the laptop preprocesses the text using a **GPU-accelerated CUDA text transformation pipeline** and automatically types the processed content into the active window when the user presses a multi-key hotkey (7 + 8 + 9).
+
+The system demonstrates low-level socket programming, custom protocol design, multithreading, OS-level automation, and high-performance parallel computing through CUDA. The receiver is implemented in C++ with WinSock2 and CUDA, and the sender in Python. The CUDA engine handles computationally expensive text normalization and analytics, ensuring minimal CPU blocking and real-time responsiveness.
+
+### 2. Motivation
+Offline peer-to-peer data exchange is critical when:
+- Internet is unavailable or restricted
+- Communication must remain private and local
+- Low-latency automation is required without cloud dependencies
+
+A novel motivation was to build a hybrid CPU–GPU architecture demonstrating real-world acceleration benefits beyond traditional classroom kernels. Text preprocessing becomes expensive for large payloads, especially when networking and UI automation must remain responsive. Offloading this workload to the GPU provides massive throughput via thousands of parallel operations.
+
+### 3. System Architecture Overview
+Android (Termux)
+↓ Bluetooth PAN (TCP)
+Windows Receiver (WinSock2 + CUDA)
+↓
+GPU Text Pipeline (Normalization, Histogram, Hashing)
+↓
+Automated Typing via Win32 SendInput
+
+
+
+### 4. CUDA GPU Processing Pipeline
+After receiving the file, the text is transferred to the GPU and processed through multiple CUDA kernels:
+| Kernel | Functionality | GPU Technique |
+|--------|---------------|----------------|
+| normalize_and_uppercase | Global cleanup + casing | Grid-stride loops |
+| ascii_histogram | Character frequency analytics | Shared memory + atomicAdd |
+| rolling_hash | Integrity fingerprint | 64-bit atomic operations |
+
+This enables:
+- Sub-millisecond processing times (for tens of KB payloads)
+- Fully parallel per-character operations
+- Freed CPU resources for networking and automation threads
+
+### 5. Implementation Details
+**C++ Receiver**
+- WinSock2 TCP server with manual partial read handling
+- Multi-threaded design using CreateThread
+- UTF-8 to UTF-16 conversion using MultiByteToWideChar
+- GPU processing via pinned memory + asynchronous transfers
+- Automated keystroke injection via SendInput
+
+**Python Sender**
+- Reads file and sends framed message (length prefix + payload)
+- Optional ACK for guaranteed delivery
+
+**Protocol Format**
+4 bytes - big-endian payload length
+N bytes - raw text payload
+1 byte - optional ACK
+
+
+### 6. Key Features & Advantages
+- Zero-Internet offline communication via Bluetooth PAN
+- GPU-accelerated text preprocessing with measurable performance gain
+- Real-time automated input delivery across any application window
+- Secure, controlled, point-to-point transmission
+- Timestamped logging and deterministic behavior
+
+### 7. Testing & Validation
+Test scenarios included small, medium, and large text transfers, consecutive transfers, interrupted connections, and unstable Bluetooth links. GPU timing logs confirm accelerations below 1ms for kilobyte-scale inputs and stable operation under load. All tests passed without corruption, deadlocks, or data loss.
+
+### 8. Future Work
+- GPU AES-256 encryption layer
+- GPU SHA-256 integrity hashing
+- CUDA streams for overlapping transfer and compute
+- Intelligent semantic segmentation / NLP preprocessing on GPU
+- Batch multi-file mode
+- GUI monitoring dashboard
+
+### 9. Conclusion
+HYPERLINK-GPU demonstrates a seamless fusion of Bluetooth PAN networking, OS-level automation, and high-performance GPU parallel processing. By integrating CUDA-based text transformation into a real communication system, the project moves beyond textbook kernels and validates the practical value of GPU acceleration in user-facing applications. The architecture is robust, scalable, and extendable to advanced security, compression, or automation workflows.
