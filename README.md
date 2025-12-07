@@ -64,19 +64,16 @@ receiver.exe --port 5001 --gpu 1
 python3 src/cn_project_sender.py
 # Trigger auto-typing:
 # Press 7 + 8 + 9
+```
 
 
 
 ## **Future Enhancements**
+- GPU AES-256 encryption & SHA-256 hashing
+- CUDA stream-based parallel batching
+- GPU NLP semantic scoring
 
+## **Author**
+**Daksh Arora – IIITD – B.Tech CSE**
 
-GPU AES-256 encryption & SHA-256 hashing
-
-CUDA stream-based parallel batching
-
-GPU NLP semantic scoring
-
-Author
-
-Daksh Arora – IIITD – B.Tech CSE
 
