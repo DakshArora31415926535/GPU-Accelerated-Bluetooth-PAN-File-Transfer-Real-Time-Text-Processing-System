@@ -52,6 +52,8 @@ processed_output.txt),,
 project_report.pdf
 /demo
 demo_link.txt
+/webpage
+index.html
 
 
 ---
