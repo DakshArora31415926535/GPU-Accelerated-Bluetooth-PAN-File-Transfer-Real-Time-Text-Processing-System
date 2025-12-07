@@ -42,12 +42,12 @@ Android → TCP over Bluetooth PAN → Windows Receiver
 ## **Repository Structure**
 
 /src
-receiver_win32_fixed.cpp
-cn_project_sender.py
-gpu_text_pipeline.cu
+(receiver_win32_fixed.cpp,
+cn_project_sender.py,
+gpu_text_pipeline.cu),,
 /results
-gpu_log.csv
-processed_output.txt
+(gpu_log.csv,
+processed_output.txt),,
 /docs
 project_report.pdf
 /demo
@@ -74,6 +74,6 @@ python3 src/cn_project_sender.py
 - GPU NLP semantic scoring
 
 ## **Author**
-**Daksh Arora **
+Daksh Arora 
 
 
