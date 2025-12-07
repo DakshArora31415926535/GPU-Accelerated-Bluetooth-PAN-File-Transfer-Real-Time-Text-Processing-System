@@ -66,7 +66,9 @@ python3 src/cn_project_sender.py
 # Press 7 + 8 + 9
 
 
-Future Enhancements
+
+## **Future Enhancements**
+
 
 GPU AES-256 encryption & SHA-256 hashing
 
