@@ -1,0 +1,19 @@
+================ ORIGINAL INPUT ==================
+Hello, world!
+this is    a     test 1234.
+line 2.
+special chars: @#$%^&*()   end.
+
+================ GPU PROCESSED OUTPUT ==================
+HELLO, WORLD! THIS IS A TEST 1234. LINE 2. SPECIAL CHARS: @#$%^&*() END.
+
+================ GPU METADATA ==================
+Total Characters Processed : 118
+Alphabetic Characters      : 63
+Numeric Characters         : 4
+Whitespace Normalized      : Yes
+Control Characters Removed : Yes
+Global Rolling Hash        : 0x5A3F9192C418E7AB
+GPU Execution Time         : 0.232 ms
+Histogram Sample (A–Z):
+A: 6  B: 0  C: 4  D: 3  E: 10  F: 0  G: 1  H: 3  I: 6  J: 0  K: 0  L: 5  M: 0  N: 4  O: 3  P: 1  Q: 0  R: 2  S: 6  T: 8  U: 0  V: 0  W: 1  X: 0  Y: 0  Z: 0
